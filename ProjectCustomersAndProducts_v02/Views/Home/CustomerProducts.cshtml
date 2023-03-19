@@ -1,0 +1,28 @@
+﻿@model CustomerProductsViewModel
+
+<h2>Enroll new Customer</h2>
+<form asp-asp-controller="Home" asp-action="CustomerProducts">
+	<label class="col-form-label" asp-for="CustomerId"></label>
+	<input class="form-control" asp-for="CustomerId" />
+
+	<label class="col-form-label" asp-for="ProductId"></label>
+	<input class="form-control" asp-for="ProductId" />
+
+	<label class="col-form-label" asp-for="ProductName"></label>
+	<input class="form-control" asp-for="ProductName" />
+
+	<label class="col-form-label" asp-for="ProductCategoryId"></label>
+	<input class="form-control" asp-for="ProductCategoryId" />
+
+	<label class="col-form-label" asp-for="ProductDescription"></label>
+	<input class="form-control" asp-for="ProductDescription" />
+
+	<label class="col-form-label" asp-for="Balance"></label>
+	<input class="form-control" asp-for="Balance" />
+
+	
+	<button class="btn btn-primary">CustomerProducts</button>
+
+</form>
+
+<

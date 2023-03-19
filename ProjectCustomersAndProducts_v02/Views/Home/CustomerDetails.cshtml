@@ -1,0 +1,76 @@
+﻿@model CustomerViewModel
+
+<h2>Edit Customer</h2>
+<form asp-asp-controller="Home" asp-action="EditCustomer">
+	<label class="col-form-label" asp-for="CustomerName"></label>
+	<input class="form-control" asp-for="CustomerName" />
+
+	<label class="col-form-label" asp-for="NationalID"></label>
+	<input class="form-control" asp-for="NationalID" />
+
+	<label class="col-form-label" asp-for="DateofBirth"></label>
+	<input class="form-control" asp-for="DateofBirth" />
+
+	<label class="col-form-label" asp-for="Address"></label>
+	<input class="form-control" asp-for="Address" />
+
+	<label class="col-form-label" asp-for="City"></label>
+	<input class="form-control" asp-for="City" />
+
+	<label class="col-form-label" asp-for="Region"></label>
+	<input class="form-control" asp-for="Region" />
+
+	<label class="col-form-label" asp-for="PostalCode"></label>
+	<input class="form-control" asp-for="PostalCode" />
+
+	<label class="col-form-label" asp-for="Country"></label>
+	<input class="form-control" asp-for="Country" />
+
+	<label class="col-form-label" asp-for="PhoneNumber"></label>
+	<input class="form-control" asp-for="PhoneNumber" />
+
+	<label class="col-form-label" asp-for="PictureIDCard"></label>
+	<input class="form-control" asp-for="PictureIDCard" />
+
+	<input hidden asp-for="CustomerId" />
+
+	<div>
+		<button class="btn btn-primary">Edit customer</button>
+
+		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</button>
+	</div>
+</form>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">DELETE</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Are you sure, you want to delete <b>@Model.CustomerName : @Model.NationalID</b>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button onclick="deleteCustomer()" type="button" class="btn btn-danger">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const deleteCustomer = () => {
+		fetch('/Home/Delete?CustomerId=' + @Model.CustomerId)
+			.then(() => redirectToIndex()
+				.catch((error) => {
+					console.error('Error:', error);
+				}));
+	}
+
+	const redirectToIndex = () => {
+		window.location = "/Home/Index";
+	}
+</script>

@@ -1,0 +1,13 @@
+﻿namespace ProjectCustomersAndProducts_v02.Models
+{
+	using System;
+	public class ProductViewModel
+	{
+		public int ProductId { get; set; }
+		public string ProductName { get; set; }
+		public int ProductCategoryId { get; set; }
+		public string ProductDescription { get; set; }
+		public int Balance { get; set; }
+		public int CustomerId { get; set; }
+	}
+}

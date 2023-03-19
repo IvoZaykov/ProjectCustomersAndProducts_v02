@@ -1,0 +1,37 @@
+﻿@model CustomerViewModel
+
+<h2>Enroll new Customer</h2>
+<form asp-asp-controller="Home" asp-action="AddCustomer">
+	<label class="col-form-label" asp-for="CustomerName"></label>
+	<input class="form-control" asp-for="CustomerName" />
+
+	<label class="col-form-label" asp-for="NationalID"></label>
+	<input class="form-control" asp-for="NationalID" />
+
+	<label class="col-form-label" asp-for="DateofBirth"></label>
+	<input class="form-control" asp-for="DateofBirth" />
+
+	<label class="col-form-label" asp-for="Address"></label>
+	<input class="form-control" asp-for="Address" />
+
+	<label class="col-form-label" asp-for="City"></label>
+	<input class="form-control" asp-for="City" />
+
+	<label class="col-form-label" asp-for="Region"></label>
+	<input class="form-control" asp-for="Region" />
+
+	<label class="col-form-label" asp-for="PostalCode"></label>
+	<input class="form-control" asp-for="PostalCode" />
+
+	<label class="col-form-label" asp-for="Country"></label>
+	<input class="form-control" asp-for="Country" />
+
+	<label class="col-form-label" asp-for="PhoneNumber"></label>
+	<input class="form-control" asp-for="PhoneNumber" />
+
+	<label class="col-form-label" asp-for="PictureIDCard"></label>
+	<input class="form-control" asp-for="PictureIDCard" />
+
+	<button class ="btn btn-primary">Enroll customer</button>
+</form>
+

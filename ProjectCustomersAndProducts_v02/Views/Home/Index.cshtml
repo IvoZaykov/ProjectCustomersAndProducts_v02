@@ -1,0 +1,121 @@
+﻿@model CustomerViewModelList
+
+@if (Model == null || Model.List == null || Model.List.Count == 0)
+{
+	<h2>No availble customers yet</h2>
+	<div>You can return to <a href="/Home/AddCustomer">enroll a customer</a></div>
+}
+else
+{
+	foreach (var customer in Model.List)
+	{
+		<div onclick="loadCustomer('@customer.CustomerId')" id="customer-container" class="container">
+			<h4>@customer.CustomerName : @customer.NationalID</h4>
+			<div class="row">
+				<div class="col-md-3">
+					<img src="@customer.PictureIDCard" class="img-thumbnail" />
+					@*<img src="~/images/CustomerID.jpg" class="img-thumbnail" />*@
+				</div>
+				<div class="col-md-9">
+					@customer.PhoneNumber
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					Address: @customer.Address
+				</div>
+				<div class="col text-right">
+					City: @customer.City
+				</div>
+			</div>
+			
+
+		</div>
+		<hr />
+
+	}
+
+
+	<nav aria-label="...">
+		<ul class="pagination">
+			@if (Model.CurrentPage == 1)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#" tabindex="-1">Previous</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage-1)" tabindex="-1">Previous</a>
+				</li>
+			}
+			@for (int i = 0; i < Model.TotalPages; i++)
+			{
+				if (i + 1 == Model.CurrentPage)
+				{
+					<li class="page-item active">
+						<a class="page-link" href="/Home/Index?currentPage=@(i + 1)">@(i + 1) <span class="sr-only">(current)</span></a>
+					</li>
+				}
+				else
+				{
+					<li class="page-item"><a class="page-link" href="/Home/Index?currentPage=@(i + 1)">@(i + 1)</a></li>
+				}
+			}
+
+			@if (Model.CurrentPage == Model.TotalPages)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#">Next</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage+1)">Next</a>
+				</li>
+			}
+
+		</ul>
+	</nav>
+}
+<div class="modal fade" id="reserve-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<label for="name">Name:</label>
+				<input class="form-control" type="text" name="name" />
+
+				<label for="tel">Tel:</label>
+				<input id="tel" type="text" class="form-control" />
+
+				<label for="from">From:</label>
+				<input id="from" class="form-control" type="date" />
+
+				<label for="to">To:</label>
+				<input id="to" class="form-control" type="date" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button onclick="" type="button" class="btn btn-primary">Reserve</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	const loadCustomer = (customerId) => {
+		window.location = '/Home/CustomerDetails?customerId=' + customerId
+	}
+				
+</script>
+
+
