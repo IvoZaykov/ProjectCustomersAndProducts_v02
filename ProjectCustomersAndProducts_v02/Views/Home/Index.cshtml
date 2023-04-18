@@ -1,5 +1,10 @@
 ﻿@model CustomerViewModelList
 
+
+<div> 
+	<button onclick="getData()" class="btn btn-primary"> Show Customer</button>
+</div>
+
 @if (Model == null || Model.List == null || Model.List.Count == 0)
 {
 	<h2>No availble customers yet</h2>
@@ -117,5 +122,7 @@ else
 	}
 				
 </script>
+
+
 
 

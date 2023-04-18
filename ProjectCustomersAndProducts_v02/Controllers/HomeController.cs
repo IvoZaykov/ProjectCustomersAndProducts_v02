@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectCustomersAndProducts_v02.Migrations;
 using ProjectCustomersAndProducts_v02.Models;
 using ProjectCustomersAndProducts_v02.Services;
 
@@ -15,12 +15,18 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ICustomerService customerService;
+		private readonly IProductService productService;
 
 
-		public HomeController(ICustomerService customerService)
+		public HomeController(ICustomerService customerService, IProductService productService)
 		{
 			this.customerService = customerService;
+			this.productService = productService;
+
 		}
+
+
+
 
 		public IActionResult Index(int currentPage = 1)
 		{
@@ -58,6 +64,7 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 			return RedirectToAction("Index");
 		}
 
+
 		public IActionResult CustomerProducts(int CustomerId)
 		{
 			var customerDataModel = this.customerService.GetById(CustomerId);
@@ -84,7 +91,29 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 			this.customerService.Add(GetCustomerDataModel(customer));
 			return RedirectToAction("Index");
 		}
+		[HttpGet]
+		public IActionResult AddProduct()
+		{
+			return View();
+		}
 
+		[HttpPost]
+		public IActionResult AddProduct(ProductViewModel product)
+		{
+			this.productService.Add(GetProductDataModel(product));
+			return RedirectToAction("Index");
+		}
+
+		//public IActionResult Data()
+		//{
+		//	var name = names[rnd.Next(names.Length)];
+
+		//	return Ok(new
+		//	{
+		//		name,
+		//		age = rnd.Next(10, 50)
+		//	});
+		//}
 		public IActionResult Privacy()
 		{
 			return View();
@@ -133,37 +162,7 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 				IsDeleted = c.IsDeleted
 			};
 		}
-
-		private Migrations.CustomerProducts GetCustomerProductsDataModel(CustomerProductsViewModel customerProduct)
-		{
-			return new CustomerProducts
-			{
-				ProductId = customerProduct.ProductId,
-				Product = customerProduct.Product,
-				ProductName = customerProduct.ProductName,
-				ProductDescription = customerProduct.ProductDescription,
-				ProductCategoryId = customerProduct.ProductCategoryId,
-				Balance = customerProduct.Balance,
-				CustomerId = customerProduct.CustomerId,
-			};
-		}
-
-		//private CustomerProductsViewModel GetCustomerProductsDataModel(CustomerProducts d)
-		//{
-		//	return new CustomerProductsViewModel
-		//	{
-		//		ProductId = d.ProductId,
-		//		Product = d.Product,
-		//		ProductName = d.ProductName,
-		//		ProductDescription = d.ProductDescription,
-		//		ProductCategoryId = d.ProductCategoryId,
-		//		Balance = d.Balance,
-		//		CustomerId = d.CustomerId,
-		//	};
-		//}
-
-
-			private List<CustomerViewModel> GetCustomerViewModel(List<Customer> source)
+		private List<CustomerViewModel> GetCustomerViewModel(List<Customer> source)
 		{
 			var customers = new List<CustomerViewModel>();
 
@@ -173,5 +172,58 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 			}
 			return customers;
 		}
+
+		private Product GetProductDataModel(ProductViewModel product)
+		{
+			return new Product
+			{
+				ProductId = product.ProductId,
+				ProductName = product.ProductName,
+				ProductDescription = product.ProductDescription,
+				ProductCategoryId = product.ProductCategoryId,
+				Balance = product.Balance,
+				CustomerId = product.CustomerId
+			};
+		}
+
+		private ProductViewModel GetProductViewmodel(Product product)
+		{
+			return new ProductViewModel
+			{
+				ProductId = product.ProductId,
+				ProductName = product.ProductName,
+				ProductDescription = product.ProductDescription,
+				ProductCategoryId = product.ProductCategoryId,
+				Balance = product.Balance,
+				CustomerId = product.CustomerId
+			};
+		}
+
+		private CustomerProductsViewModel GetCustomerProductsViewModel(CustomerProducts d)
+		{
+			return new CustomerProductsViewModel
+			{
+				ProductId = d.ProductId,
+				Product = d.Product,
+				ProductName = d.ProductName,
+				ProductDescription = d.ProductDescription,
+				ProductCategoryId = d.ProductCategoryId,
+				Balance = d.Balance,
+				CustomerId = d.CustomerId,
+			};
+		}
+
+		//private List<CustomerProductsViewModel> GetCustomerProductsViewModel(List<CustomerProducts> source)
+		//{
+		//	var customerProduct = new List<CustomerProductsViewModel>();
+
+		//	foreach (var d in source)
+		//	{
+		//		customerProduct.Add(GetCustomerProductsViewModel(d));
+		//	}
+		//	return customerProduct;
+		//}
+
+
 	}
 }

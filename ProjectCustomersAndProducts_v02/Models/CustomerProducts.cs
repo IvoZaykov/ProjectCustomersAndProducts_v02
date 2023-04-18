@@ -5,7 +5,7 @@ namespace ProjectCustomersAndProducts_v02.Models
 	using System.ComponentModel.DataAnnotations;
 	public class CustomerProducts
 	{
-		
+
 		public int ProductId { get; set; }
 		public Product Product { get; set; }
 		public string ProductName { get; set; }

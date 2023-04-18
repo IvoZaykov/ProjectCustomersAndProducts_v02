@@ -30,7 +30,7 @@ namespace ProjectCustomersAndProducts_v02
 
             services.AddTransient<ICustomerService, CustomerService>();
 
-            services.AddTransient<ICustomerProductsService, CustomerProductsService>();
+            //services.AddTransient<ICustomerProductsService, CustomerProductsService>();
 
             services.AddTransient<IProductService, ProductService>();
 

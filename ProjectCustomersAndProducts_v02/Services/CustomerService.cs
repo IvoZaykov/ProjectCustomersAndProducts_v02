@@ -19,6 +19,8 @@
 			this.db.Customers.Add(customer);
 			this.db.SaveChanges();
 		}
+
+
 		public void Delete(int customerId)
 		{
 			var customertoDelete = this.db.Customers.FirstOrDefault(x => x.CustomerId == customerId);

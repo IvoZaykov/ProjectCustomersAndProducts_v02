@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace ProjectCustomersAndProducts_v02.Models
+﻿namespace ProjectCustomersAndProducts_v02.Models
 {
-    public class Product
+	using System;
+	using System.Collections.Generic;
+	public class Product
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

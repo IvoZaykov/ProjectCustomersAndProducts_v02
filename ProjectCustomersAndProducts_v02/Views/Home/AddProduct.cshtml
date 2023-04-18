@@ -1,7 +1,7 @@
-﻿@model CustomerProductsViewModel
+﻿@model ProductViewModel
 
-<h2>Enroll new Customer</h2>
-<form asp-asp-controller="Home" asp-action="CustomerProducts">
+<h2>Enroll new Product</h2>
+<form asp-asp-controller="Home" asp-action="AddProduct">
 	<label class="col-form-label" asp-for="CustomerId"></label>
 	<input class="form-control" asp-for="CustomerId" />
 
@@ -21,8 +21,6 @@
 	<input class="form-control" asp-for="Balance" />
 
 	
-	<button class="btn btn-primary">CustomerProducts</button>
+	<button class="btn btn-primary mt-3">Enroll product</button>
 
 </form>
-
-<
