@@ -104,16 +104,7 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 			return RedirectToAction("Index");
 		}
 
-		//public IActionResult Data()
-		//{
-		//	var name = names[rnd.Next(names.Length)];
-
-		//	return Ok(new
-		//	{
-		//		name,
-		//		age = rnd.Next(10, 50)
-		//	});
-		//}
+		
 		public IActionResult Privacy()
 		{
 			return View();
@@ -213,16 +204,7 @@ namespace ProjectCustomersAndProducts_v02.Controllers
 			};
 		}
 
-		//private List<CustomerProductsViewModel> GetCustomerProductsViewModel(List<CustomerProducts> source)
-		//{
-		//	var customerProduct = new List<CustomerProductsViewModel>();
-
-		//	foreach (var d in source)
-		//	{
-		//		customerProduct.Add(GetCustomerProductsViewModel(d));
-		//	}
-		//	return customerProduct;
-		//}
+		
 
 
 	}
